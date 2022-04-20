@@ -25,18 +25,24 @@ function App() {
   });
 
   return (
+    <nav>
     <div className="App">
       <Header />
       <main>
-
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : isError ? (
+          <p>There was an error</p>
+        ) : (
           <InfiniteScroll hasMore={hasNextPage} loadMore={fetchNextPage}>
             {data.pages.map((page) =>
               page.results.map((post) => <PostCard key={post.id} post={post} />)
             )}
           </InfiniteScroll>
-      
+        )}
       </main>
     </div>
+    </nav>
   );
 }
 
